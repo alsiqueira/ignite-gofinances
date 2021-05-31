@@ -1,7 +1,11 @@
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { ITransactionCardProps } from '.'
 
+interface ITransactionProps{
+  type: 'positive' | 'negative'; 
+}
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.shape};
 
@@ -9,14 +13,20 @@ export const Container = styled.View`
   border-radius: 5px;
 
   padding: 17px 24px;
+
+  margin-bottom: ${RFValue(16)}px;  ;
 `;
 
 export const Title = styled.Text`
   font-size: ${RFValue(14)}px;
 `;
-export const Amount = styled.Text`
+export const Amount = styled.Text<ITransactionProps>`
   font-size: ${RFValue(20)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme, type }) => 
+  type === 'positive' ? theme.colors.success :
+  theme.colors.attention
+  };
 
   margin-top: 2px;
 `;

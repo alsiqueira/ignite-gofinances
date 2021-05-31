@@ -1,7 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { HighlightCard } from '../../components/HighlightCard';
-import { TransactionCard } from '../../components/TransactionCard';
+import { TransactionCard, ITransactionCardProps } from '../../components/TransactionCard';
 import {
   Container,
   Header,
@@ -15,7 +14,60 @@ import {
   HighlightCards,
   Transactions,
   Title,
+  TransactionList,
+  LogoutButton,
 } from './styles';
+
+export interface IDataListProps extends ITransactionCardProps{
+  id: string;
+}
+
+const data: IDataListProps[] =[
+    {
+    id: '1',
+    type: 'positive',
+    title: "Desenvolvimento de site",
+    amount: "R$ 12.000,00",
+    category: {
+      name: 'Vendas',
+      icon: 'dollar-sign'
+    },
+    date: "13/04/2021"
+  },
+    {
+      id: '2',
+    type: 'negative',
+    title: "Desenvolvimento de site",
+    amount: "R$ 12.000,00",
+    category: {
+      name: 'Vendas',
+      icon: 'dollar-sign'
+    },
+    date: "13/04/2021"
+  },
+    {
+      id: '3',
+      type: 'negative',
+    title: "Desenvolvimento de site",
+    amount: "R$ 12.000,00",
+    category: {
+      name: 'Vendas',
+      icon: 'dollar-sign'
+    },
+    date: "13/04/2021"
+  },
+    {
+      id: '4',
+      type: 'positive',
+    title: "Desenvolvimento de site",
+    amount: "R$ 12.000,00",
+    category: {
+      name: 'Vendas',
+      icon: 'home'
+    },
+    date: "13/04/2021"
+  },
+]
 
 export function Dashboard() {
   return (
@@ -33,7 +85,9 @@ export function Dashboard() {
               <UserName>Alexandre</UserName>
             </User>
           </UserInfo>
+         <LogoutButton onPress={()=>{}}>
           <Icon name="power" />
+        </LogoutButton> 
         </UserWrapper>
       </Header>
       <HighlightCards>
@@ -58,7 +112,13 @@ export function Dashboard() {
       </HighlightCards>
       <Transactions>
         <Title>Linstagem</Title>
-        <TransactionCard />
+
+        <TransactionList 
+         data={data}
+         keyExtractor={item => item.id}
+         renderItem={({item}) => <TransactionCard  data={item} />}
+        />
+
       </Transactions>
     </Container>
   );
