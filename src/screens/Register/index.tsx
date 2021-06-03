@@ -49,7 +49,7 @@ export function Register() {
   });
 
   
-  function handleTransactionTypeButtonSelect(type: 'up' | 'down'){
+  function handleTransactionTypeButtonSelect(type: 'positive' | 'negative'){
     setTransactionType(type)
   }
   function handleCloseSelectCategoryModal(){
@@ -129,15 +129,15 @@ export function Register() {
                   <TransactionTypeButton 
                     type='up' 
                     title='Entrada'  
-                    onPress={() => handleTransactionTypeButtonSelect('up')}
-                    isActive={transactionType == 'up'}
+                    onPress={() => handleTransactionTypeButtonSelect('positive')}
+                    isActive={transactionType == 'positive'}
                   />
                   <TransactionTypeButton 
                     
                     type='down' 
                     title='Saida' 
-                    onPress={() => handleTransactionTypeButtonSelect('down')} 
-                    isActive={transactionType == 'down'}
+                    onPress={() => handleTransactionTypeButtonSelect('negative')} 
+                    isActive={transactionType == 'negative'}
                   />
                 </TransactionTypes>
 
